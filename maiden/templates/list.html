@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+
+{% block title %} 用户列表 {% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row-fluid">
+        <table class="table table-bordered" style="margin: 30px;">
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>用户名</th>
+                  <th>Email</th>
+                  <th>角色</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ url_for('users.edit', id=user.id) }}" title="修改用户"><i class="icon-edit"></i></a>
+                    <a href="{{ url_for('users.delete', id=user.id) }}" title="删除用户" class="need-confirm"><i class="icon-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5"><a href="{{ url_for('users.create') }}" class="btn">新建用户</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+    
+{% endblock %}

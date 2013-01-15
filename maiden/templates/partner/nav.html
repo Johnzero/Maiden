@@ -1,0 +1,8 @@
+<nav id="secondary">
+    <ul>
+        <li{% if 'sale_partner.partner_month' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_partner.partner_month') }}">客户销售趋势</a></li>
+    </ul>
+    <div id="notifications">
+        <ul></ul>
+    </div>
+</nav>

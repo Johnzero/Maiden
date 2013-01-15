@@ -1,0 +1,89 @@
+{% extends "bimain_layout.html" %}
+
+{% block title %}月销售趋势 / 产品{% endblock %}
+
+{% block secondary %}
+{% include 'product/nav.html' %}
+{% endblock %}
+
+{% block main %}
+<section id="maincontainer">
+    <div id="main" class="container_12">
+        <div class="box">
+            <div class="box-header">
+                <span class="glyph chart"></span> <h1>月销售趋势</h1>
+            </div>
+            <div class="box-content">
+                <div id="chart_container_all">
+                    请在下方选择需要查看的产品.
+                </div>
+            </div>
+            <div class="action_bar">
+                <form id="product_choose">
+                    <select name="product" id="product" placeholder="点击选择产品" style="width: 300px">
+                        <option>点击选择产品</option>
+                        {% if products %}
+                            {% for product in products %}
+                            <option value="{{ product.id }}">{{ product.code or '' }} {{ product.name }}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                    <input type="submit" class="button blue" value="查看数据">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="/static/Highstock-1.2.4/js/highstock.js"></script>
+    <script type="text/javascript">
+        
+        $(function(){
+            Highcharts.setOptions({'lang':chart_lang});
+            
+            $('#product_choose').submit(function(){
+                
+                $.getJSON('{{url_for('sale_product.qty_month_data') }}'+'?id='+$('#product').val(), function(data){
+                    chart = new Highcharts.StockChart({
+                        chart: {
+                            height: 600,
+                            renderTo: 'chart_container_all',
+                            type: 'column'
+                        },
+                
+                        rangeSelector: {
+                            selected: 1
+                        },
+                        legend: {
+                            enabled: true,
+                            floating:true,
+                            verticalAlign: top,
+                            x:0,
+                            y:30
+                        },
+                        yAxis: {
+                        title: {
+                            text: '只数'
+                        }},
+                        tooltip: {
+                            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                            valueDecimals: 2
+                        },
+                        
+                        series: data.result
+                    });
+                });
+                
+                
+                
+                return false;
+            });
+            
+
+            
+        });
+    </script>
+{% endblock %}

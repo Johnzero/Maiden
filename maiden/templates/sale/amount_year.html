@@ -1,0 +1,207 @@
+{% extends "bimain_layout.html" %}
+
+{% block title %}年度销售对比 / 销售{% endblock %}
+
+{% block secondary %}
+{% include 'sale/nav.html' %}
+{% endblock %}
+
+{% block main %}
+<section id="maincontainer">
+    <div id="main" class="container_12">
+        <div class="box">
+            <div class="box-header">
+                <span class="glyph shuffle"></span> <h1>年度销售对比</h1>
+                <ul>
+                    <li class="active"><a href="#one">真空事业部</a></li>
+                    <li><a href="#two">玻璃事业部</a></li>
+                    <li><a href="#three">安全帽事业部</a></li>
+                    <li><a href="#four">塑胶事业部</a></li>
+                </ul>
+            </div>
+            <div class="box-content">
+                <div id="one" class="tab-content">
+                    <div id="chart_container_vacuume" style="height: 600px">
+                        正在加载数据，请稍等...
+                    </div>
+                </div>
+                <div id="two" class="tab-content">
+                    <div id="chart_container_glass" style="height: 600px">
+                        正在加载数据，请稍等...
+                    </div>
+                </div>
+                <div id="three" class="tab-content">
+                    <div id="chart_container_he" style="height: 600px">
+                        正在加载数据，请稍等...
+                    </div>
+                </div>
+                <div id="four" class="tab-content">
+                    <div id="chart_container_plastic" style="height: 600px">
+                        正在加载数据，请稍等...
+                    </div>
+                </div>
+            </div>
+            <!--<div class="action_bar">
+                <a href="#" class="button small blue"><span class="glyph export"></span>Export data</a>
+                <a href="#" class="button small"><span class="glyph print"></span>Print statistics</a>
+            </div>-->
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="/static/Highcharts-2.3.3/js/highcharts.js"></script>
+    <script type="text/javascript">
+        
+        
+        $(function(){
+            Highcharts.setOptions({'lang':chart_lang});
+            
+            $.getJSON('{{url_for('sale_view_sale.amount_year_data') }}', function(data){
+                chart_vacuume = new Highcharts.Chart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_vacuume'
+                    },
+                    xAxis: {
+                        categories: ['一月', '二月', '三月', '四月', '五月', '六月', 
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    },
+                    yAxis: {
+                        title: {
+                            text: '金额'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    title: {'text': '真空事业部'},
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name} 年 {point.x} 月</span>: <b>￥ {point.y}</b><br/>',
+                        valueDecimals: 2
+                    },
+                    legend: {
+                        enabled: true,
+                        floating:true,
+                        verticalAlign: top,
+                        x:0,
+                        y:30
+                    },
+                    series: data.vacuume_data
+                });
+                
+                
+                chart_glass = new Highcharts.Chart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_glass'
+                    },
+                    xAxis: {
+                        categories: ['一月', '二月', '三月', '四月', '五月', '六月', 
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    },
+                    yAxis: {
+                        title: {
+                            text: '金额'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    title: {'text': '玻璃事业部'},
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name} 年 {point.x} 月</span>: <b>￥ {point.y}</b><br/>',
+                        valueDecimals: 2
+                    },
+                    legend: {
+                        enabled: true,
+                        floating:true,
+                        verticalAlign: top,
+                        x:0,
+                        y:30
+                    },
+                    series: data.glass_data
+                });
+                
+                chart_he = new Highcharts.Chart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_he'
+                    },
+                    xAxis: {
+                        categories: ['一月', '二月', '三月', '四月', '五月', '六月', 
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    },
+                    yAxis: {
+                        title: {
+                            text: '金额'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    title: {'text': '安全帽事业部'},
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name} 年 {point.x} 月</span>: <b>￥ {point.y}</b><br/>',
+                        valueDecimals: 2
+                    },
+                    legend: {
+                        enabled: true,
+                        floating:true,
+                        verticalAlign: top,
+                        x:0,
+                        y:30
+                    },
+                    series: data.he_data
+                });
+                
+                chart_plastic = new Highcharts.Chart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_plastic'
+                    },
+                    xAxis: {
+                        categories: ['一月', '二月', '三月', '四月', '五月', '六月', 
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    },
+                    yAxis: {
+                        title: {
+                            text: '金额'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    title: {'text': '塑胶事业部'},
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name} 年 {point.x} 月</span>: <b>￥ {point.y}</b><br/>',
+                        valueDecimals: 2
+                    },
+                    legend: {
+                        enabled: true,
+                        floating:true,
+                        verticalAlign: top,
+                        x:0,
+                        y:30
+                    },
+                    series: data.plastic_data
+                });
+                
+                
+            });
+            
+            
+        });
+    </script>
+{% endblock %}

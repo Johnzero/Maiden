@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}登录{% endblock %}
+{% block body %}
+
+<body id="login">
+    <div id="login_container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="notification error">
+            <span class="icon"></span>
+            {{ message }}
+            <a href="#" class="close">x</a>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div id="login_form">
+            <h1>富光数据门户</h1>
+            <form method="post" action="{{ url_for('users.login') }}">
+                {{ form.hidden_tag() }} {{ form.next }}
+                <p>
+                    {{ form.username(id="username", placeholder="用户名称", class_="{validate: {required: true}}") }}
+                </p>
+                <p>
+                    {{ form.password(id="password", placeholder="用户密码", class_="{validate: {required: true}}") }}
+                </p>
+                <button type="submit" class="button blue"><span class="glyph key"></span> 登录系统</button>
+                <!--    {{ form.remember(class_="checkbox") }} 记住登录-->
+            </form>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

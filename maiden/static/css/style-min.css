@@ -1,0 +1,81 @@
+body{padding-top:40px;background:url(../images/main-bg.jpg)}
+a{color:#666}
+a:hover,a:focus{color:#D74040}
+.border-line{border:solid 1px #E8E8E8;border-bottom:none;border-top:none}
+.navbar-inverse .navbar-inner{background-color:#2F2F2F}
+.navbar-search .search-query{padding-left:29px;height:18px;width:180px}
+.navbar .navbar-inner #user-area{margin-top:8px;font-size:14px}
+.navbar .navbar-inner #user-area a{color:#999}
+.dropdown-menu li > a:hover,.dropdown-menu li > a:focus,.dropdown-submenu:hover > a {color: #ffffff;
+  text-decoration: none;
+  background-color: #D74040;
+  background-color: #D74040;
+  background-image: -moz-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F8F8F8), to(#FFFFFF));
+  background-image: -webkit-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: -o-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: linear-gradient(to bottom, #F8F8F8, #FFFFFF);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffF8F8F8', endColorstr='#ffFFFFFF', GradientType=0);}
+
+.dropdown-menu .active > a,.dropdown-menu .active > a:hover {  color: #ffffff;
+  text-decoration: none;
+  background-color: #D74040;
+  background-color: #D74040;
+  background-image: -moz-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F8F8F8), to(#FFFFFF));
+  background-image: -webkit-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: -o-linear-gradient(top, #F8F8F8, #FFFFFF);
+  background-image: linear-gradient(to bottom, #F8F8F8, #FFFFFF);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffF8F8F8', endColorstr='#ffFFFFFF', GradientType=0);}
+.navbar-search .icon-search{position:absolute;top:7px;right:11px;background-image:url(../lib/bootstrap/img/glyphicons-halflings-white.png)}
+.fg-menu{height:120px;background:url(../images/menu-bg.png) no-repeat center top}
+.fg-menu .main-menu{margin:50px 0 0 20px}
+.nav-pills > li > a{font-size:20px;color:#D74040;margin-left:20px}
+.nav-pills > .active > a,.nav-pills > .active > a:hover{background-color:#D74040}
+.dropdown-menu a{font-size:16px}
+.navbar-inverse .navbar-search .search-query:focus,.navbar-inverse .navbar-search .search-query.focused{padding-left:29px}
+.search-query:focus + .icon-search{background-image:url(../lib/bootstrap/img/glyphicons-halflings.png)}
+.header-400{margin-top:10px}
+.center{text-align:center}
+.banner{background:url(../images/banner-bg.jpg) repeat-x center top}
+.middle-box{background-color:#FFF;border-bottom:solid 1px #E8E8E8}
+.middle-box .span4{height:180px;background:url(../images/middle-box.png) no-repeat center top;position:relative}
+.middle-box .span4 h4{margin:30px 0 0 32px}
+.middle-box .span4 h4 span{height:30px;width:30px;display:inline-block;vertical-align:top;background:url(../images/middle-box-icons.png) no-repeat -4px -2px;margin:0 10px 0 0}
+.middle-box .span4 h4 span.news{background-position:-32px -2px}
+.middle-box .span4 h4 span.network{background-position:-63px -2px}
+.middle-box .span4:hover{background:url(../images/middle-box-hover.png) no-repeat center top}
+.middle-box .span4 .text{color:#848484;font-size:12px;padding:10px 10px 10px 24px}
+.middle-box .span4 .more{position:absolute;right:24px;bottom:0}
+.middle-box .span4:hover a{color:#D74040;text-decoration:none}
+.products .container{background-color:#FFF;position:relative}
+.fg-pager{position:absolute;right:18px;top:28px}
+.fg-pager a{display:inline-block;width:19px;height:19px;background:url(../images/arrows.png) no-repeat left top;margin:2px}
+.fg-pager a.prev:hover{background-position:-19px 0}
+.fg-pager a.next{background-position:-38px 0}
+.fg-pager a.next:hover{background-position:-57px 0}
+.products .product-list .text{width:260px}
+.products .product-list .text hr{margin:4px}
+.misc .container{background-color:#FFF;border-bottom:solid 3px #F0F0F0}
+.misc .dialog-image{margin-left:30px}
+.misc .span8,.misc .span4{position:relative}
+.misc .quote{background:url(../images/quote-bg.png) no-repeat center top;padding:6px}
+.system .container{background:url(../images/system-bg.jpg);height:318px}
+.footer .container{height:90px;background-color:#D74040;border-top:solid 3px #B73636}
+.footer .container img{margin:26px}
+.footer .container .span8{text-align:right;color:#999;margin:30px 20px 0 0}
+.footer .container .span8 a{color:#FFF;font-size:16px;margin:0 10px}
+.copyright .container{text-align:center;margin:20px}
+.slides_container div.slide{width:960px;height:350px;display:block}
+#slides .pagination{width:100px;height:30px;margin:10px auto 0}
+#slides .pagination li{float:left;list-style:none;margin:0 1px}
+#slides .pagination li a{display:block;width:12px;height:0;padding-top:12px;background-image:url(../images/pagination.png);background-position:0 0;float:left;overflow:hidden}
+#slides .pagination li.current a{background-position:0 -12px}
+#slides .caption{z-index:500;position:absolute;bottom:-35px;left:0;height:30px;background:rgba(0,0,0,.5);width:960px;font-size:1.3em;line-height:1.33;color:#fff;border-top:1px solid #000;text-shadow:none;padding:5px 20px 0}
+.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container,.container,.slides_container{width:960px}
+.dropdown-menu li > a:hover,.dropdown-menu li > a:focus,.dropdown-submenu:hover > a,.dropdown-menu .active > a,.dropdown-menu .active > a:hover{color:#fff;text-decoration:none;background-color:#D74040;background-image:linear-gradient(tobottom,#F8F8F8,#FFFFFF);background-repeat:repeat-x;filter:progid:dximagetransform.microsoft.gradient(startColorstr='#ffF8F8F8',endColorstr='#ffFFFFFF',GradientType=0)}
+.middle-box .span4 .more a,.products .product-list .text dd,.misc .span6 dd,.misc .quote blockquote p,.misc .desc{color:#848484;font-size:12px}
+.products h4,.misc h4,.system h4,.products .product-list,.system form{margin:30px}
+.misc .span6 hr,.system form hr{margin:10px}

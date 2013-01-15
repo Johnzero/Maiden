@@ -1,0 +1,70 @@
+{% extends "bimain_layout.html" %}
+
+{% block title %}月度销售趋势 / 销售{% endblock %}
+
+{% block secondary %}
+{% include 'sale/nav.html' %}
+{% endblock %}
+
+{% block main %}
+<section id="maincontainer">
+    <div id="main" class="container_12">
+        <div class="box">
+            <div class="box-header">
+                <span class="glyph chart"></span> <h1>月度销售趋势</h1>
+            </div>
+            <div class="box-content">
+                <div id="chart_container_all">
+                    正在加载数据，请稍等...
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="/static/Highstock-1.2.4/js/highstock.js"></script>
+    <script type="text/javascript">
+        
+        
+        $(function(){
+            Highcharts.setOptions({'lang':chart_lang});
+            
+            $.getJSON('{{url_for('sale_view_sale.amount_division_month_data') }}', function(data){
+                chart = new Highcharts.StockChart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_all'
+                    },
+    
+                    rangeSelector: {
+                        selected: 1
+                    },
+                    legend: {
+                        enabled: true,
+                        floating:true,
+                        verticalAlign: top,
+                        x:0,
+                        y:30
+                    },
+                    plotOptions: {
+                        series: {
+                                compare: 'percent'
+                        }
+                    },
+                    
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                        valueDecimals: 2
+                    },
+                    
+                    series: data.result
+                });
+            });
+            
+        });
+    </script>
+{% endblock %}

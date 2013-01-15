@@ -1,0 +1,30 @@
+
+.middle-banner .page-title{
+    float: left;
+}
+
+.middle-banner .content .left-col{
+    padding: 0px;
+}
+
+.middle-banner .content .left-col .main-content{
+    margin: 30px;
+}
+
+.middle-banner .content .right-col{
+    padding: 0px;
+}
+
+.middle-banner .content .right-col .right-content{
+    margin: 10px;
+}
+
+.service-item{
+    height: 200px;
+}
+
+
+.product-item{
+    margin: 10px;
+    height: 300px;
+}

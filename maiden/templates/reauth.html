@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+
+{% block title %} 用户登录{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row-fluid">
+        
+        <form action="" method=post>
+            <p>你已经登录为 {{ current_user }}. 请确认您的登录: <input type=submit value=确认></p>
+        </form>
+    </div>
+</div>
+    
+{% endblock %}
