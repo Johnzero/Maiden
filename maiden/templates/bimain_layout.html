@@ -1,0 +1,46 @@
+{% extends "bilayout.html" %}
+
+{% block body %}
+
+<body>
+
+    <!-- Primary navigation -->
+    <nav id="primary">
+        <ul>
+            <li{% if 'sale_view.bp_main' == request.endpoint %} class="active"{% endif %}>
+              <a href="{{ url_for('sale_view.bp_main') }}"><span class="glyph dashboard"></span>仪表盘</a>
+            </li>
+            <li{% if 'sale' in request.endpoint %} class="active"{% endif %}>
+              <a href="{{ url_for('sale_view_sale.amount_division') }}"><span class="glyph cart"></span>销售</a>
+            </li>
+            <li{% if 'product' in request.endpoint %} class="active"{% endif %}>
+              <a href="{{ url_for('sale_product.qty_month') }}"><span class="glyph dropbox"></span>产品</a>
+            </li>
+            <li{% if 'partner' in request.endpoint %} class="active"{% endif %}>
+              <a href="{{ url_for('sale_partner.partner_month') }}"><span class="glyph user"></span>客户</a>
+            </li>
+            {% if current_user.is_admin %}
+            <li>
+              <a href=""><span class="glyph cog"></span>配置</a>
+            </li>
+            {% endif %}
+            <li class="bottom">
+              <a href="{{ url_for('login_view.fun_logout') }}"><span class="glyph quit"></span>退出</a>
+            </li>
+        </ul>
+    </nav>
+
+    {% block secondary %}
+    {% endblock %}
+    
+    
+    {% block main %}
+    
+    {% endblock %}
+
+
+    {% block extra_js %}
+    {% endblock %}
+</body>
+
+{% endblock %}

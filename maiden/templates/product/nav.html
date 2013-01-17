@@ -1,0 +1,11 @@
+<nav id="secondary">
+    <ul>
+        <li{% if 'sale_product.qty_month' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_product.qty_month') }}">月销售趋势</a></li>
+        <li{% if 'sale_product.price_padding' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_product.price_padding') }}">价格区间分析</a></li>
+        <li{% if 'sale_product.capacity_padding' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_product.capacity_padding') }}">容量区间分析</a></li>
+        <li{% if 'sale_product.shape_analyze' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_product.shape_analyze') }}">杯型分析</a></li>
+    </ul>
+    <div id="notifications">
+        <ul></ul>
+    </div>
+</nav>

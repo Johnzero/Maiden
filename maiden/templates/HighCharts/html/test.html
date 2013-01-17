@@ -1,0 +1,85 @@
+<!-- 加载jquery -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- javascript代码  -->
+<script type="text/javascript">
+            $(function () {
+                var chart;
+                $(document).ready(function() {
+                    //定义一个HighCharts 
+                    chart = new Highcharts.Chart({
+                        //配置chart选项
+                        chart: {
+                        renderTo: 'highcharts1',  //容器名，和body部分的div id要一致
+                        type: 'spline'                        //图表类型，这里选择折线图
+            },
+               //配置链接及名称选项 
+            credits: {
+                enabled : true,
+                href : "http://www.52wulian.org",
+                text : "浏览总理：291，IP总数：74  -- 我爱物联网"
+            },
+            //配置标题
+            title: {
+                text: '我爱物联网 2012/09/22 访问统计',
+                y:10  //默认对齐是顶部，所以这里代表距离顶部10px 
+            },
+            //配置副标题
+            subtitle: {
+                text: '数据来源：百度统计',
+                y:30
+            },
+            //配置x轴
+            xAxis: {
+                categories: ['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11','12',
+                                         '13','14','15','16','17','18','19','20','21','22','23/点']
+            },
+            // 配置y轴
+            yAxis: {
+                title: {
+                    text: '次数（次）'
+                },
+                labels: {   
+                    formatter: function() {
+                        return this.value +'次'
+                    }
+                }
+            },
+            //配置数据点提示框
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            //配置数据使其点显示信息
+            plotOptions: {
+                   spline : {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            //配置数据列 
+            series: [{
+                name: '浏览次数（PV）',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [16,10, 8, 0, 0, 0, 2, 1, 5,10,25,34,
+                            8,12,38,22,13,14,11, 8, 8, 5, 8,33]},{
+                name: 'IP数',
+                marker: {
+                    symbol: 'diamond'
+                },
+                data: [ 7, 2, 1, 0, 0, 0, 1, 1, 3, 5, 4, 2,
+                          5, 5, 2, 1, 5, 3, 1, 4, 4, 4, 5, 9]
+            }]
+                    });
+                });
+            });
+        </script>
+<!-- 加载 highC主js文件 ，-->
+<script src="../js/highcharts.js"></script>
+<!-- 加载 exporting ，是highCharts实现打印，下载图片必须的js文件，如果不需要该功能，可不用-->
+<script src="../js/exporting.js"></script>
+<!-- 新建一个容器，存放在head部分定义的Chart内容 。这里的id一定是chart : {...}内的renderTo的值-->
+    <div id="highcharts1" style="min-width:400px;height:400px;margin:0 auto;">

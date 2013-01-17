@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+
+{% block title %} 修改用户 {% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row-fluid">
+        <form method="POST" action="{{ url_for('users.edit', id=user.id) }}">
+            <legend>修改用户</legend>
+            {{ form.hidden_tag() }}
+            {{ form.username.label }}
+            {{ form.username }}
+            {{ form.password.label }}
+            {{ form.password(value='') }}
+            {{ form.email.label }}
+            {{ form.email }}
+            {{ form.role.label }}
+            {{ form.role }}
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="保存"/>
+            <a href="{{ url_for('users.list') }}" class="btn btn-warning">取消</a>
+        </form>
+    </div>
+</div>
+    
+{% endblock %}

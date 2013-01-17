@@ -1,0 +1,62 @@
+{% extends "bimain_layout.html" %}
+
+{% block title %}杯型分析 / 产品{% endblock %}
+
+{% block secondary %}
+{% include 'product/nav.html' %}
+{% endblock %}
+
+{% block main %}
+<section id="maincontainer">
+    <div id="main" class="container_12">
+        <div class="box">
+            <div class="box-header">
+                <span class="glyph chart"></span> <h1>杯型分析</h1>
+            </div>
+            <div class="box-content">
+                <div id="chart_container_all">
+                    正在加载数据，请稍等...
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="/static/Highstock-1.2.4/js/highstock.js"></script>
+    <script type="text/javascript">
+        
+        $(function(){
+            Highcharts.setOptions({'lang':chart_lang});
+            
+            $.getJSON('{{url_for('sale_product.shape_analyze_data') }}', function(data){
+                chart = new Highcharts.Chart({
+                    chart: {
+                        height: 600,
+                        renderTo: 'chart_container_all',
+                        type: 'column'
+                    },
+                    title: {
+                        text: '杯型分析'
+                    },
+                    xAxis: {
+                        categories: data.columns
+                    },
+                    yAxis: {
+                        title: {
+                            text: '只数'
+                        },
+                        type: 'logarithmic',
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>'
+                    },
+                    series: data.result
+                });
+            });
+            
+        });
+    </script>
+{% endblock %}

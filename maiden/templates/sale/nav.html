@@ -1,0 +1,10 @@
+<nav id="secondary">
+    <ul>
+        <li{% if 'sale_view_sale.amount_division' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_view_sale.amount_division') }}">销售总体趋势</a></li>
+        <li{% if 'sale_view_sale.amount_month' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_view_sale.amount_month') }}">月度销售趋势</a></li>
+        <li{% if 'sale_view_sale.amount_year' == request.endpoint %} class="active"{% endif %}><a href="{{ url_for('sale_view_sale.amount_year') }}">年度销售对比</a></li>
+    </ul>
+    <div id="notifications">
+        <ul></ul>
+    </div>
+</nav>

@@ -1,0 +1,117 @@
+{% extends "bimain_layout.html" %}
+
+{% block title %}仪表盘{% endblock %}
+
+{% block secondary %}
+<nav id="secondary">
+    <ul>
+        <li class="active"><a href="#">总体指数</a></li>
+        
+    </ul>
+    <div id="notifications">
+        <ul></ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block main %}
+<section id="maincontainer">
+    <div id="main" class="container_12">
+        <div class="grid_6 alpha">
+            <div class="box">
+                <div class="box-header">
+                    <span class="glyph chart"></span>
+                    <h1>昨日经营数据</h1>
+                </div>
+                <ul class="statistics">
+                    {% for i in info %}
+                    {% if i.amount %}
+                    <li><a href="#"><span>{{ i.amount }}</span>{{ i.source }} ({{ (i.system == 'FUGUANG') and '富光' or 'FGA' }})</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="action_bar">
+                    共计:  <span style="font-size: 18px;font-weight: bold;">{{ all_amount }}</span>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header">
+                    <span class="glyph listicon"></span>
+                    <h1>昨日销售最热的产品</h1>
+                </div>
+    
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>产品:</td>
+                            <td><strong>销量（只）</strong></td>
+                        </tr>
+                        {% for recap in recaps %}
+                        {% if recap.type == 'PRODUCT' %}
+                        <tr>
+                            <td>{{ recap.name }}</td>
+                            <td>{{ recap.amount }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="grid_6 omega">
+            <div class="box">
+                <div class="box-header">
+                    <span class="glyph user"></span>
+                    <h1>用户信息</h1>
+                </div>
+    
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>当前登录帐号:</td>
+    
+                            <td><strong>{{ current_user }}</strong></td>
+                        </tr>
+    
+                        <tr>
+                            <td>权限</td>
+    
+                            <td>{{ current_user.system or '管理员' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                
+            </div>
+            
+            <div class="box">
+                <div class="box-header">
+                    <span class="glyph group"></span>
+                    <h1>昨日最给力客户</h1>
+                </div>
+    
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>客户:</td>
+                            <td><strong>金额（元）</strong></td>
+                        </tr>
+                        {% for recap in recaps %}
+                        {% if recap.type == 'PARTNER' %}
+                        <tr>
+                            <td>{{ recap.name }}</td>
+                            <td>{{ recap.amount }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
