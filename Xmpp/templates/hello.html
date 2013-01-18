@@ -1,0 +1,29 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Hello - Chapter 3</title>
+<script type="text/javascript" src="/static/js/jquery-1.9.0.min.js"></script>
+<link rel='stylesheet'href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css'>
+<script src='/static/jquery-ui-1.10.0.custom.min.js'></script>
+<script src='/static/strophe.js'></script>
+<script src='/static/flensed.min.js'></script>
+<script src='/static/script.js'></script>
+<script src='/static/jquery.xmpp.js'></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='strophe.flxhr.js') }}"></script>
+
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<h1>Hello</h1>
+<div id='log'>
+</div>
+<!-- login dialog -->
+<div id='login_dialog' class='hidden'>
+<label>JID:    </label> <input type='text' id='jid'>
+<label>PSD:  </label><input type='password' id='password'>
+</div>
+</body>
