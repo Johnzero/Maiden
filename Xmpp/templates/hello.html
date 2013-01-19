@@ -1,7 +1,7 @@
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
+    
 <html>
+    
 <head>
 <title>Hello - Chapter 3</title>
 <script type="text/javascript" src="/static/js/jquery-1.9.0.min.js"></script>
@@ -13,17 +13,22 @@
 <script src='/static/jquery.xmpp.js'></script>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 <script src="{{ url_for('static', filename='strophe.flxhr.js') }}"></script>
-
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-
 </head>
+
 <body>
-<h1>Hello</h1>
-<div id='log'>
-</div>
+<h1>Peek</h1>
 <!-- login dialog -->
 <div id='login_dialog' class='hidden'>
-<label>JID:    </label> <input type='text' id='jid'>
-<label>PSD:  </label><input type='password' id='password'>
+    <label>JID:    </label> <input type='text' id='jid' value="zero1233276@jabber.org">
+    <label>PSD:  </label><input type='password' id='password' value="zero1233276">
+</div>
+<div id='console' style="height:800px"></div>
+<textarea id='input' class='disabled' disabled='disabled'></textarea>
+<div id='buttonbar'>
+    <input id='send_button' type='submit' value='Send Data' disabled='disabled' class='button'>
+    <input id='disconnect_button' type='submit' value='Disconnect' disabled='disabled' class='button'>
+</div>
+<div id='log'>
 </div>
 </body>
