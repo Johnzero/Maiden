@@ -1,31 +1,29 @@
 var Gab = {
-connection: null,
-jid_to_id: function (jid) {
-return Strophe.getBareJidFromJid(jid)
-.replace("@", "-")
-.replace(".", "-");
-},
-on_roster: function (iq) {
-$(iq).find('item').each(function () {
-var jid = $(this).attr('jid');
-var name = $(this).attr('name') || jid;
-// transform jid into an id
-var jid_id = Gab.jid_to_id(jid);
-var contact = $("<li id='" + jid_id + "'>" +
-"<div class='roster-contact offline'>" +
-"<div class='roster-name'>" +
-name +
-"</div><div class='roster-jid'>" +
-jid +
-"</div></div></li>");
-Gab.insert_contact(contact);
-});
-// set up presence handler and send initial presence
-Gab.connection.addHandler(Gab.on_presence, null, "presence");
-Gab.connection.send($pres());
-},
-pending_subscriber: null,
-on_presence: function (presence) {
+
+    connection: null,
+    
+    pending_subscriber: null,
+
+    jid_to_id: function (jid) {
+        return Strophe.getBareJidFromJid(jid)
+            .replace("@", "-")
+            .replace(".", "-");
+    },
+    
+    on_roster: function (iq) {
+        $(iq).find('item').each(function () {
+            var jid = $(this).attr('jid');
+            var name = $(this).attr('name') || jid;
+            var jid_id = Gab.jid_to_id(jid);
+            var contact = $("<li id='" + jid_id + "'>" + "<div class='roster-contact offline'>" + "<div class='roster-name'>" +name +"</div><div class='roster-jid'>" +jid +"</div></div></li>");
+            Gab.insert_contact(contact);
+        });
+    
+    Gab.connection.addHandler(Gab.on_presence, null, "presence");
+    Gab.connection.send($pres());
+    },
+    
+    on_presence: function (presence) {
 var ptype = $(presence).attr('type');
 var from = $(presence).attr('from');
 var jid_id = Gab.jid_to_id(from);
@@ -187,23 +185,63 @@ $('#roster-area ul').append(elem);
 }
 }
 };
+//////////////////////////////////////////////////////
+
+$(document).bind('disconnected', function () {
+    Gab.connection = null;
+    Gab.pending_subscriber = null;
+    $('#roster-area ul').empty();
+    $('#chat-area ul').empty();
+    $('#chat-area div').remove();
+    $('#login_dialog').dialog('open');
+    $('#login_dialog2').dialog('open');
+});
+
+$(document).bind('connected', function () {
+    var iq = $iq({type: 'get'}).c('query', {xmlns:'jabber:iq:roster'});
+    Gab.connection.sendIQ(iq, Gab.on_roster);
+    Gab.connection.addHandler(Gab.on_roster_changed,"jabber:iq:roster","iq","set");
+    Gab.connection.addHandler(Gab.on_message,null, "message", "chat");
+});
+
+$(document).bind('connect', function (ev, data) {
+    var conn = new Strophe.Connection('http://bosh.metajack.im:5280/xmpp-httpbind');
+    conn.connect(data.jid, data.password, function (status) {
+        if (status === Strophe.Status.CONNECTED) {
+            $(document).trigger('connected');
+        }
+        else if (status === Strophe.Status.DISCONNECTED) {
+            $(document).trigger('disconnected');
+        }
+    });
+    Gab.connection = conn;
+});
+
 $(document).ready(function () {
-$('#login_dialog').dialog({
-autoOpen: true,
-draggable: false,
-modal: true,
-title: 'Connect to XMPP',
-buttons: {
-"Connect": function () {
-$(document).trigger('connect', {
-jid: $('#jid').val(),
-password: $('#password').val()
-});
-$('#password').val('');
-$(this).dialog('close');
-}
-}
-});
+    
+    $('#login_dialog').dialog({
+        autoOpen: true,
+        draggable: false,
+        modal: true,
+        title: 'Connect to XMPP',
+        buttons: {
+            "Connect": function () {
+                $(document).trigger('connect', {
+                jid: $('#jid').val(),
+                password: $('#password').val()});
+            //$('#password').val('');
+            $(this).dialog('close');
+            },
+            "Connect X": function () {
+                $(document).trigger('connect', {
+                jid: $('#jid2').val(),
+                password: $('#password2').val()});
+            //$('#password2').val('');
+            $(this).dialog('close');
+            }
+        }
+    });
+    
 $('#contact_dialog').dialog({
 autoOpen: false,
 draggable: false,
@@ -293,10 +331,13 @@ $(this).parent().data('composing', true);
 }
 }
 });
-$('#disconnect').click(function () {
-Gab.connection.disconnect();
-Gab.connection = null;
-});
+
+    $('#disconnect').click(function () {
+        if (Gab.connection){
+            Gab.connection.disconnect();
+            Gab.connection = null;
+        };
+    });
 $('#chat_dialog').dialog({
 autoOpen: false,
 draggable: false,
@@ -321,34 +362,8 @@ $('#new-chat').click(function () {
 $('#chat_dialog').dialog('open');
 });
 });
-$(document).bind('connect', function (ev, data) {
-var conn = new Strophe.Connection(
-'http://bosh.metajack.im:5280/xmpp-httpbind');
-conn.connect(data.jid, data.password, function (status) {
-if (status === Strophe.Status.CONNECTED) {
-$(document).trigger('connected');
-} else if (status === Strophe.Status.DISCONNECTED) {
-$(document).trigger('disconnected');
-}
-});
-Gab.connection = conn;
-});
-$(document).bind('connected', function () {
-var iq = $iq({type: 'get'}).c('query', {xmlns: 'jabber:iq:roster'});
-Gab.connection.sendIQ(iq, Gab.on_roster);
-Gab.connection.addHandler(Gab.on_roster_changed,
-"jabber:iq:roster", "iq", "set");
-Gab.connection.addHandler(Gab.on_message,
-null, "message", "chat");
-});
-$(document).bind('disconnected', function () {
-    Gab.connection = null;
-Gab.pending_subscriber = null;
-$('#roster-area ul').empty();
-$('#chat-area ul').empty();
-$('#chat-area div').remove();
-$('#login_dialog').dialog('open');
-});
+
+
 $(document).bind('contact_added', function (ev, data) {
 var iq = $iq({type: "set"}).c("query", {xmlns: "jabber:iq:roster"})
 .c("item", data);
