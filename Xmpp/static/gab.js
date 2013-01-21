@@ -15,7 +15,9 @@ var Gab = {
             var jid = $(this).attr('jid');
             var name = $(this).attr('name') || jid;
             var jid_id = Gab.jid_to_id(jid);
-            var contact = $("<li id='" + jid_id + "'>" + "<div class='roster-contact offline'>" + "<div class='roster-name'>" +name +"</div><div class='roster-jid'>" +jid +"</div></div></li>");
+            var contact = $("<li id='" + jid_id + "'>" + "<div class='roster-contact offline'>"
+                            + "<div class='roster-name'>" + name + "</div><div class='roster-jid'>"
+                            + jid + "</div></div></li>");
             Gab.insert_contact(contact);
         });
     
@@ -147,43 +149,45 @@ scroll_chat: function (jid_id) {
 var div = $('#chat-' + jid_id + ' .chat-messages').get(0);
 div.scrollTop = div.scrollHeight;
 },
-presence_value: function (elem) {
-if (elem.hasClass('online')) {
-return 2;
-} else if (elem.hasClass('away')) {
-return 1;
-}
-return 0;
-},
-insert_contact: function (elem) {
-var jid = elem.find('.roster-jid').text();
-var pres = Gab.presence_value(elem.find('.roster-contact'));
-var contacts = $('#roster-area li');
-if (contacts.length > 0) {
-var inserted = false;
-contacts.each(function () {
-var cmp_pres = Gab.presence_value(
-$(this).find('.roster-contact'));
-var cmp_jid = $(this).find('.roster-jid').text();
-if (pres > cmp_pres) {
-$(this).before(elem);
-inserted = true;
-return false;
-} else {
-if (jid < cmp_jid) {
-$(this).before(elem);
-inserted = true;
-return false;
-}
-}
-});
-if (!inserted) {
-$('#roster-area ul').append(elem);
-}
-} else {
-$('#roster-area ul').append(elem);
-}
-}
+    presence_value: function (elem) {
+        if (elem.hasClass('online')) {
+            return 2;}
+        else if (elem.hasClass('away')) {
+            return 1;}
+        return 0;
+    },
+
+    insert_contact: function (elem) {
+        var jid = elem.find('.roster-jid').text();
+        console.log(elem.find('.roster-contact'));
+        var pres = Gab.presence_value(elem.find('.roster-contact'));
+        var contacts = $('#roster-area li');
+    if (contacts.length > 0) {
+    var inserted = false;
+    contacts.each(function () {
+    var cmp_pres = Gab.presence_value(
+    $(this).find('.roster-contact'));
+    var cmp_jid = $(this).find('.roster-jid').text();
+    if (pres > cmp_pres) {
+    $(this).before(elem);
+    inserted = true;
+    return false;
+    } else {
+    if (jid < cmp_jid) {
+    $(this).before(elem);
+    inserted = true;
+    return false;
+    }
+    }
+    });
+    if (!inserted) {
+    $('#roster-area ul').append(elem);
+    }
+    } else {
+    $('#roster-area ul').append(elem);
+    }
+    }
+
 };
 //////////////////////////////////////////////////////
 
