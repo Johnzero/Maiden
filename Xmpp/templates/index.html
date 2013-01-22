@@ -5,13 +5,17 @@
 	<title>Candy - Chats are not dead yet</title>
 	<link rel="shortcut icon" href="/static/res/img/favicon.png" type="image/gif" />
 	<link rel="stylesheet" type="text/css" href="/static/res/default.css" />
-	
+	<script src="/static/deploy/flXHR.js"></script>
+	<script src='/static/strophe.js'></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 	<script type="text/javascript" src="/static/libs/libs.min.js"></script>
 	<script type="text/javascript" src="/static/candy.min.js"></script>
+</head>
+<body>
+	<div id="candy"></div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			Candy.init('http://127.0.0.1:5050/http-bind/', {
+			Candy.init('/http-bind/', {
 				core: { debug: true },
 				view: { resources: '/static/res/' },
 			});
@@ -19,8 +23,5 @@
 			Candy.Core.connect();
 		});
 	</script>
-</head>
-<body>
-	<div id="candy"></div>
 </body>
 </html>
