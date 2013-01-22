@@ -14,7 +14,7 @@ IM.Client = function (options) {
     this.host = options.host || '/http-bind';
     this.jid = options.jid;
     this.password = options.password;
-    this.connection = new Strophe.Connection("http://bosh.metajack.im:5280/xmpp-httpbind");
+    this.connection = new Strophe.Connection("http://127.0.0.1:5280/http-bind");
     this.jids = {};
 
     // TODO: move into a function
