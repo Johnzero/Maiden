@@ -1,0 +1,18 @@
+15:53:01,208 | INFO  | org.springframework.context.support.ClassPathXmlApplicationContext | Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6b6d7e89: startup date [Tue Jan 22 15:53:01 CST 2013]; root of context hierarchy
+15:53:01,296 | INFO  | org.springframework.beans.factory.xml.XmlBeanDefinitionReader | Loading XML bean definitions from class path resource [spring-config.xml]
+15:53:01,402 | INFO  | org.springframework.beans.factory.support.DefaultListableBeanFactory | Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@272b479b: defining beans [inmemoryStorageRegistry,jcrStorageRegistry,addUsers,tcpEndpoint,server]; root of factory hierarchy
+15:53:01,910 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | replacing the storage provider registry with org.apache.vysper.storage.inmemory.MemoryStorageProviderRegistry
+15:53:02,285 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... servicediscovery (1.0beta)
+15:53:02,289 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... roster (1.0beta)
+15:53:02,449 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0092 Software Version (1.0)
+15:53:02,465 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0202 Entity Time (1.0)
+15:53:02,494 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0054 Vcard-temp (1.0)
+15:53:02,495 | ERROR | org.apache.vysper.xmpp.modules.extension.xep0054_vcardtemp.VcardTempModule | no VcardTempPersistenceManager found
+15:53:02,496 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0199 XMPP Ping (2.0)
+15:53:02,497 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0049 Private Data (1.2)
+15:53:02,498 | ERROR | org.apache.vysper.xmpp.modules.extension.xep0049_privatedata.PrivateDataModule | no PrivateDataPersistenceManager found
+15:53:02,499 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0050 Ad-hoc Commands (1.2)
+15:53:02,501 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0133 Service Administration (1.1)
+15:53:02,502 | INFO  | org.apache.vysper.xmpp.server.DefaultServerRuntimeContext | adding module... XEP-0045 Multi-user chat (1.24)
+15:53:02,517 | WARN  | org.apache.vysper.xmpp.modules.extension.xep0045_muc.MUCModule | No room storage provider found, using the default (in memory)
+15:53:02,517 | WARN  | org.apache.vysper.xmpp.modules.extension.xep0045_muc.MUCModule | No occupant storage provider found, using the default (in memory)
