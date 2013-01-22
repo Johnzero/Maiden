@@ -212,7 +212,7 @@ $(document).bind('connected', function () {
 });
 
 $(document).bind('connect', function (ev, data) {
-    var conn = new Strophe.Connection('http://bosh.metajack.im:5280/xmpp-httpbind');
+    var conn = new Strophe.Connection('http://127.0.0.1:5280/http-bind/');
     conn.connect(data.jid, data.password, function (status) {
         if (status === Strophe.Status.CONNECTED) {
             $(document).trigger('connected');
@@ -337,7 +337,6 @@ $(document).ready(function () {
             Gab.connection = null;
         };
     });
-    
     
     $('#chat_dialog').dialog({
         autoOpen: false,
