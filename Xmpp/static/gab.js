@@ -212,7 +212,11 @@ $(document).bind('connected', function () {
 });
 
 $(document).bind('connect', function (ev, data) {
+<<<<<<< HEAD
+    var conn = new Strophe.Connection('http://localhost:7070/http-bind');
+=======
     var conn = new Strophe.Connection('http://127.0.0.1:7070/http-bind/');
+>>>>>>> 60b45aed6d5b851da616cfeac8772ae006d11f9f
     conn.connect(data.jid, data.password, function (status) {
         if (status === Strophe.Status.CONNECTED) {
             $(document).trigger('connected');
