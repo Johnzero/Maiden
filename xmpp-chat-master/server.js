@@ -9,8 +9,8 @@ var util = require('util'),
 var app = express(),
     proxy = new httpProxy.HttpProxy({
         target: {
-            host: 'http://127.0.0.1:5280/http-bind',
-            port: 5280          // Port of XMPP server
+            host: 'localhost',
+            port: 7070          // Port of XMPP server
         }
     });
 
@@ -62,7 +62,7 @@ app.get('/sign_out', function (req, res) {
 });
 
 // Proxy BOSH request to XMPP server
-app.all('http://127.0.0.1:5280/http-bind', function(req, res) {
+app.all('/http-bind', function(req, res) {
     util.puts('Request successfully proxied: ' + req.url);
     util.puts(JSON.stringify(req.headers, true, 2));
     proxy.proxyRequest(req, res);
