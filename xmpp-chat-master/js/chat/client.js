@@ -11,10 +11,10 @@ var IM = {};
 
 // constructor
 IM.Client = function (options) {
-    this.host = options.host || '/http-bind';
+    this.host = options.host || '/http-bind/';
     this.jid = options.jid;
     this.password = options.password;
-    this.connection = new Strophe.Connection(this.host);
+    this.connection = new Strophe.Connection('http://127.0.0.1:7070/http-bind/');
     this.jids = {};
 
     // TODO: move into a function
