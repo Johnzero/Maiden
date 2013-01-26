@@ -56,7 +56,7 @@ def close_db_connection(exception):
 
 @app.route('/')
 def show_entries():
-    return render_template('gab.html')
+    return render_template('index.html')
 
 
 @app.route('/add', methods=['POST'])
@@ -83,7 +83,7 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(url_for('show_entries'))
-    return render_template('login.html', error=error)
+    return render_template('index.html', error=error)
 
 
 @app.route('/logout')
