@@ -56,7 +56,7 @@ def close_db_connection(exception):
 
 @app.route('/')
 def show_entries():
-    return render_template('index.html')
+    return render_template('gab.html')
 
 
 @app.route('/add', methods=['POST'])
