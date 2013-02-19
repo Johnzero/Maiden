@@ -8,14 +8,13 @@
     </head>
     <body>
         <h1>Introduction to the DOM</h1>
-        <p class="test">There are a number of reasons why the
-        DOM is awesome, here are some:</p>
+        <p class="test">There are a number of reasons why the DOM is awesome, here are some:</p>
         <ul>
         <li id="everywhere">It can be found everywhere.</li>
         <li class="test">It's easy to use.</li>
         <li class="test">It can help you to find what you want, really quickly.</li>
         </ul>
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
             function loop(elm) {
                 do {
                     console.log(elm);
@@ -25,6 +24,28 @@
                 return elm;
             };
             loop($('li')[1]);
+        </script>-->
+        <script type="text/javascript">
+            function xpathtest(query) {
+                var destination = document.evaluate(query, document, null,
+                    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+                for (var i = 0; i < destination.snapshotLength; i++) {
+                    thisNode = destination.snapshotItem(i);
+                    console.log(thisNode);
+                };
+            };
+        </script>
+        <script type="text/javascript">
+            function xpath(query) {
+                return document.evaluate(query, document, null,
+                    XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+            };
+        </script>
+        <script type="text/javascript">
+            $("*").dblclick(function (event) {
+                console.log(this);
+                event.stopPropagation(); 
+            });
         </script>
     </body>
 </html>
