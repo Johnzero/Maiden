@@ -4,7 +4,7 @@
     <head>
         <title>Introduction to the DOM</title>
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript"></script>
+        
     </head>
     <body>
         <h1>Introduction to the DOM</h1>
@@ -15,5 +15,16 @@
         <li class="test">It's easy to use.</li>
         <li class="test">It can help you to find what you want, really quickly.</li>
         </ul>
+        <script type="text/javascript">
+            function loop(elm) {
+                do {
+                    console.log(elm);
+                    elm = elm.parentNode
+                }
+                while (elm != document);
+                return elm;
+            };
+            loop($('li')[1]);
+        </script>
     </body>
 </html>
