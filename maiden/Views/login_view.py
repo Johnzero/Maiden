@@ -14,9 +14,10 @@ from flask.ext.admin.base import expose,AdminIndexView
 from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext import wtf
 from flask_principal import Principal, identity_changed, Identity, AnonymousIdentity, identity_loaded, UserNeed, RoleNeed
+from time import sleep
 
 login_view = Blueprint('login_view',__name__,url_prefix='/login')
-REDERICT_URL = '/'
+REDERICT_URL = '/sale'
 
 @login.user_loader
 def load_user(userid):

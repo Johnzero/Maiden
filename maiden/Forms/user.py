@@ -21,3 +21,4 @@ class UserForm(Form):
     email = TextField(u'Email')
     role = SelectField(u'角色', choices=[(User.ADMIN, u'管理员'), (User.EDITOR, u'编辑'), (User.RESELLER, u'经销商')],
                        coerce=int)
+    active = BooleanField('active')
