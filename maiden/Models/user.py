@@ -51,7 +51,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True, nullable=False)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     role = db.Column(db.Integer, default=MEMBER)
-
+    
+    active = db.Column(db.Boolean, default=True)
     _password = db.Column("password", db.String(80))
     _openid = db.Column("openid", db.String(80), unique=True)
     is_active = db.Column(db.Boolean, default=True)
