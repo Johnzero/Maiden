@@ -1,52 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>{% block title %}{% endblock %}安徽富光实业股份有限公司</title>
-    <script src="/static/lib/jquery-1.8.1.min.js" type="text/javascript"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="{% block description %}{% endblock %}"/>
-    <meta name="author" content="富光实业有限{% block author %}{% endblock %}"/>
-    <meta name="keyword" content="{% block keyword %}{% endblock %}"/>
-    <link href="/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <!--[if lt IE 8]>
-    <![endif]-->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    {% block extra_head %}
-    {% endblock %}
-    <!--<link rel="shortcut icon" href="static/ico/favicon.ico">-->
-  </head>
-  <body>
-    <div id ='header'>
-        <p id='logo'><a href='#' title=''>Mountain High</a></p>
-        <p id='slogan'>CSS </p>
-        <form action='' method='post' name="search" id='search'>
-            <input type='text' name='keyword' id ='keyword'/>
-            <input type='image' src='/static/images/spinner.gif'/>
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
-    <div id ='main'>
-        <div id ='container'>
-            <ul>
-                <li id='menu'><a href="#" title="">CSS</a></li>
-            </ul>
-            <ul>
-                <li id='menu'><a href="#" title="">CSS</a></li>
-            </ul>
-            <ul>
-                <li id='menu'><a href="#" title="">CSS</a></li>
-            </ul>
-        </div>
-        <div id ='sider'>
-            
-        </div>
-    </div>
-    <div id = 'footer'>
+
+<head>
+<script language="javascript" type="text/javascript">
+        var xmlHttp;
+        function showHint(str)
+        {
+                if (str.length==0)
+                  { 
+                  document.getElementById("txtHint").innerHTML="";
+                  return;
+                  }
+
+                xmlHttp=GetXmlHttpObject();
+
+                if (xmlHttp==null)
+                  {
+
+                  alert ("Browser does not support HTTP Request");
+                  return;
+
+         } 
+
+                var url="get.php";
+                url=url+"?q="+str;
+                url=url+"&sid="+Math.random();
+                xmlHttp.onreadystatechange=stateChanged ;
+                xmlHttp.open("GET",url,true);
+                xmlHttp.send(null);
         
-    </div>
-    <div
-  </body>
+        } 
+
+        function stateChanged() 
+        { 
+
+        if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+                 { 
+                        document.getElementById("txtHint").innerHTML=xmlHttp.responseText;
+                 } 
+        };
+
+        function GetXmlHttpObject()
+        {
+        var xmlHttp=null;
+        try
+         {
+         // Firefox, Opera 8.0+, Safari
+         xmlHttp=new XMLHttpRequest();
+         }
+        catch (e)
+         {
+         // Internet Explorer
+         try
+          {
+          xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+          }
+         catch (e)
+          {
+          xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+         }
+        return xmlHttp;
+        }
+</script> 
+</head>
+
+<body>
+
+    <form action="/templates/get.php" method="get">
+Name: <input type="text" name="name" />
+Age: <input type="text" name="age" />
+<input type="submit" />
+</form>
+</body>
 </html>
